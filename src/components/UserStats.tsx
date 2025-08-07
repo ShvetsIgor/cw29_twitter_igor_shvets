@@ -13,11 +13,9 @@ const UserStats = () => {
         event.preventDefault();
 
         setStats((prevStats: Stats) => ({
-            ...prevStats,
-            [type]:
+            ...prevStats, [type]:
                 event.button === 0 ? prevStats[type] + 1 : event.button === 2 ? Math.max(prevStats[type] - 1, 0) : prevStats[type]
         }))
-
     }
 
     return (

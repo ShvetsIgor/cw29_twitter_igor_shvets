@@ -5,10 +5,12 @@ export type User = {
     avatar: string
 }
 
-export type Stats = {
-    followers: number,
-    subscribers: number
-}
+// export type Stats = {
+//     followers: number,
+//     subscribers: number
+// }
+
+export type Stats = Record<string, number>
 
 export type PropsBody = {
     user: User,
