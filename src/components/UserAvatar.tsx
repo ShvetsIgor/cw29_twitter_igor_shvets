@@ -9,9 +9,9 @@ const UserAvatar = () => {
     return (
         <div>
             <img src={user.avatar} alt={user.name} className={'user-avatar'}
-            onClick={() => dispatch(userActions.changeAvatar({
-                avatar: prompt('Enter new avatar url') || user.avatar
-            }))}
+                 onClick={() => dispatch(userActions.changeAvatar({
+                     avatar: prompt('Enter new avatar url') || user.avatar
+                 }))}
             />
         </div>
     );

@@ -10,7 +10,7 @@ const userAvatarSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        changeAvatar: (state, action: PayloadAction<{ avatar: string}>) => {
+        changeAvatar: (state, action: PayloadAction<{ avatar: string }>) => {
             state.avatar = action.payload.avatar;
         },
         changeName: (state, action: PayloadAction<{ name: string }>) => {

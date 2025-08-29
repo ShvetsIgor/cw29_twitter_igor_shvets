@@ -1,4 +1,3 @@
-
 export type Stats = {
     followers: number;
     subscribers: number;
