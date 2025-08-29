@@ -1,28 +1,27 @@
 import UserAvatar from "./UserAvatar.tsx";
-import {TwitterContext} from "../utils/twitterContext.ts";
-import {useContext} from "react";
 import * as React from "react";
-import type {Stats} from "../utils/types";
-
+import {useAppDispatch, useAppSelector} from "../redux/hooks.ts";
+import {statsActions} from "../redux/slices/userStatsSlice.ts";
+import {userActions} from "../redux/slices/userAvatarSlice.ts";
 
 const UserStats = () => {
-    const {user, stats, changeName, setStats} = useContext(TwitterContext)
 
+    const dispatch = useAppDispatch();
+    const stats = useAppSelector((state) => (state.stats))
+    const user = useAppSelector((state) => state.user);
 
-    const handleMouseStats = (event: React.MouseEvent<HTMLDivElement>, type: 'followers' | 'subscribers') => {
+    const handleMouseStats = (event: React.MouseEvent<HTMLDivElement>, type: "followers" | "subscribers") => {
         event.preventDefault();
-
-        setStats((prevStats: Stats) => ({
-            ...prevStats, [type]:
-                event.button === 0 ? prevStats[type] + 1 : event.button === 2 ? Math.max(prevStats[type] - 1, 0) : prevStats[type]
-        }))
+        dispatch(statsActions.updateStats({type: type, button: event.button}))
     }
 
     return (
         <div className={"user-stats"}>
             <UserAvatar/>
             <p
-                onClick={() => changeName(prompt('Enter new nickname') as string)}
+                onClick={() => dispatch(userActions.changeName({
+                    name: prompt("Enter new nickname") || user.name
+                }))}
             >{user.name}</p>
             <div className={'stats'}>
                 <div

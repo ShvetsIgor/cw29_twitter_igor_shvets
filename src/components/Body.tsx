@@ -1,5 +1,3 @@
-
-
 import SideBar from "./SideBar.tsx";
 import Content from "./Content.tsx";
 
